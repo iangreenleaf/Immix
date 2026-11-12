@@ -27,6 +27,7 @@ import nl.giejay.android.tv.immich.shared.prefs.MetaDataScreen
 import nl.giejay.android.tv.immich.shared.prefs.PhotosOrder
 import nl.giejay.android.tv.immich.shared.prefs.PreferenceManager
 import nl.giejay.android.tv.immich.shared.prefs.SCREENSAVER_ANIMATE_ASSET_SLIDE
+import nl.giejay.android.tv.immich.shared.prefs.SCREENSAVER_INCLUDE_VIDEOS
 import nl.giejay.android.tv.immich.shared.prefs.SCREENSAVER_PLAY_SOUND
 import nl.giejay.android.tv.immich.shared.prefs.SLIDER_ANIMATION_SPEED
 import nl.giejay.android.tv.immich.shared.prefs.SLIDER_FORCE_ORIGINAL_VIDEO
@@ -61,7 +62,7 @@ abstract class GenericAssetFragment : VerticalCardGridFragment<Asset>() {
         val sortingKey = getSortingKey()
         val filterKey = getFilterKey()
         currentSort = PreferenceManager.get(sortingKey)
-        currentFilter = PreferenceManager.get(filterKey)
+        currentFilter = if (PreferenceManager.get(SCREENSAVER_INCLUDE_VIDEOS)) PreferenceManager.get(filterKey) else ContentType.IMAGE
         super.onCreate(savedInstanceState)
         PreferenceManager.subscribeMultiple(listOf(sortingKey, filterKey)) { state ->
             if(state[sortingKey.key()] != currentSort || state[filterKey.key()] != currentFilter){
