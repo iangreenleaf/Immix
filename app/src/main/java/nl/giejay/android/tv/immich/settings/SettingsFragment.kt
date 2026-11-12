@@ -81,28 +81,6 @@ class SettingsFragment : RowsSupportFragment() {
                             )
                         },
                         SettingsCard(
-                            ImmichApplication.appContext!!.getString(R.string.screensaver),
-                            null,
-                            "screensaver",
-                            "screensaver",
-                            "ic_settings_settings"
-                        ) {
-                            findNavController().navigate(
-                                HomeFragmentDirections.actionGlobalToSettingsDialog(ScreensaverPrefScreen.key)
-                            )
-                        },
-                        SettingsCard(
-                            ImmichApplication.appContext!!.getString(R.string.home_screen_channels),
-                            null,
-                            "home_screen_channels",
-                            "ic_home_channels",
-                            "ic_home_channels"
-                        ) {
-                            findNavController().navigate(
-                                HomeFragmentDirections.actionGlobalToSettingsDialog(HomeScreenChannelsPrefScreen.key)
-                            )
-                        },
-                        SettingsCard(
                             ImmichApplication.appContext!!.getString(R.string.debug),
                             null,
                             "debug",
@@ -121,18 +99,6 @@ class SettingsFragment : RowsSupportFragment() {
                             "ic_settings_settings"
                         ) {
                             settingsResultLauncher.launch(Intent(android.provider.Settings.ACTION_SETTINGS))
-                        },
-                        SettingsCard(
-                            ImmichApplication.appContext!!.getString(R.string.donate),
-                            null,
-                            "donate",
-                            "donate",
-                            "donate",
-//                            donateService.isInitialized()
-                        ) {
-                            findNavController().navigate(
-                                HomeFragmentDirections.actionHomeToDonate()
-                            )
                         }
                     )
                 )

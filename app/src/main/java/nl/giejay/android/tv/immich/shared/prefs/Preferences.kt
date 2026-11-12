@@ -558,7 +558,9 @@ data object ViewSlideshowPrefScreen : PrefScreen(ImmichApplication.appContext!!.
             SLIDER_INTERVAL,
             SLIDER_ANIMATION_SPEED,
             SLIDER_SHOW_DATE_TOP_LEFT,
-            SLIDER_METADATA_CUSTOMIZER
+            SLIDER_METADATA_CUSTOMIZER,
+            SCREENSAVER_INCLUDE_VIDEOS,
+            SCREENSAVER_PLAY_SOUND
         ))
     )
 )

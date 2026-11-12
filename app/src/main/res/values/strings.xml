@@ -125,9 +125,9 @@
     <string name="customize_metadata">Customize metadata</string>
     <string name="configure_metadata_screensaver">Configure what to show in screensaver</string>
     <string name="include_videos">Include videos</string>
-    <string name="include_videos_screensaver">Include videos in screensaver</string>
+    <string name="include_videos_screensaver">Include videos in results</string>
     <string name="play_sound">Play sound</string>
-    <string name="play_sound_screensaver">Play sound of videos during screensaver</string>
+    <string name="play_sound_screensaver">Play sound of videos</string>
     <string name="screensaver_type">Screensaver type</string>
     <string name="screensaver_type_desc">What to show: albums, random, recent etc.</string>
     <string name="screensaver_start_now">Start now</string>
