@@ -317,5 +317,7 @@
     <string name="favorite_remove_failed">Failed to remove from favorites</string>
     <string name="wake_lock_minutes">Wake lock</string>
     <string name="wake_lock_minutes_desc">Time to keep screen active with no activity (minutes)</string>
+  <string name="wake_lock">Wake lock</string>
+  <string name="wake_lock_desc">Keep screen on</string>
 
 </resources>

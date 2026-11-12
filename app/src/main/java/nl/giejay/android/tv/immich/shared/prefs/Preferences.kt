@@ -583,12 +583,24 @@ data object ViewGeneralPrefScreen : PrefScreen(ImmichApplication.appContext!!.ge
     )
 )
 
+data object ViewWakePrefScreen : PrefScreen(ImmichApplication.appContext!!.getString(R.string.wake_lock), "view_wake",
+  listOf(
+    PrefCategory("", listOf(
+      WAKE_LOCK_MINUTES
+    ))
+  )
+)
+
 data object ViewPrefScreen : PrefScreen(ImmichApplication.appContext!!.getString(R.string.view_settings), "view",
     listOf(
         PrefCategory("",
             listOf(
                 ActionPref("view_general", ImmichApplication.appContext!!.getString(R.string.general), ImmichApplication.appContext!!.getString(R.string.general_desc)) { _, navController ->
                     navController.navigate(AlbumFragmentDirections.actionGlobalToSettingsDialog("view_general"))
+                    true
+                },
+                ActionPref("view_wake", ImmichApplication.appContext!!.getString(R.string.wake_lock), ImmichApplication.appContext!!.getString(R.string.wake_lock_desc)) { _, navController ->
+                    navController.navigate(AlbumFragmentDirections.actionGlobalToSettingsDialog("view_wake"))
                     true
                 },
                 ActionPref("view_ordering", ImmichApplication.appContext!!.getString(R.string.ordering), ImmichApplication.appContext!!.getString(R.string.ordering)) { _, navController ->

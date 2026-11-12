@@ -53,7 +53,7 @@ public class SensorPoller {
 
     public synchronized void updateSettings() {
         try {
-            var wakeLockMinutes = PreferenceManager.INSTANCE.get(WAKE_LOCK_MINUTES);
+            var wakeLockMinutes = WAKE_LOCK_MINUTES.INSTANCE.getValue(PreferenceManager.sharedPreference);
             this.durationBeforeSleep = wakeLockMinutes * 60 * 1000L;
         } catch (Exception e) {
             Timber.e(e, "Error updating settings");
