@@ -27,6 +27,7 @@ import nl.giejay.android.tv.immich.shared.prefs.MetaDataScreen
 import nl.giejay.android.tv.immich.shared.prefs.PhotosOrder
 import nl.giejay.android.tv.immich.shared.prefs.PreferenceManager
 import nl.giejay.android.tv.immich.shared.prefs.SCREENSAVER_ANIMATE_ASSET_SLIDE
+import nl.giejay.android.tv.immich.shared.prefs.SCREENSAVER_PLAY_SOUND
 import nl.giejay.android.tv.immich.shared.prefs.SLIDER_ANIMATION_SPEED
 import nl.giejay.android.tv.immich.shared.prefs.SLIDER_FORCE_ORIGINAL_VIDEO
 import nl.giejay.android.tv.immich.shared.prefs.SLIDER_GLIDE_TRANSFORMATION
@@ -155,7 +156,7 @@ abstract class GenericAssetFragment : VerticalCardGridFragment<Asset>() {
                     toSliderItems.indexOfFirst { it.ids().contains(card.id) },
                     PreferenceManager.get(SLIDER_INTERVAL),
                     PreferenceManager.get(SLIDER_ONLY_USE_THUMBNAILS),
-                    isVideoSoundEnable = true,
+                    PreferenceManager.get(SCREENSAVER_PLAY_SOUND),
                     toSliderItems,
                     loadMore,
                     { item -> manualUpdatePosition(this@GenericAssetFragment.assets.indexOfFirst { item.ids().contains(it.id) }) },
