@@ -24,16 +24,22 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import nl.giejay.android.tv.immich.homescreenchannels.HomeScreenChannelManager
 import nl.giejay.android.tv.immich.shared.prefs.DEBUG_MODE
+import android.os.Build
+import nl.giejay.android.tv.immich.sensors.ActivitySensor
 import nl.giejay.android.tv.immich.shared.prefs.PreferenceManager
 import nl.giejay.android.tv.immich.shared.prefs.USER_ID
 import timber.log.Timber
 import java.util.UUID
 
+import android.os.Handler
 
 /**
  * Initializes libraries, such as Timber, and sets up application wide settings.
  */
 class ImmichApplication : Application() {
+
+    private val mainHandler: Handler = Handler()
+    private val sensorServiceRunnable = SensorService(mainHandler)
 
     override fun onCreate() {
         super.onCreate()
@@ -42,6 +48,7 @@ class ImmichApplication : Application() {
         // kept as a cheap no-op for direct Application construction.
         appContext = this
         PreferenceManager.init(this)
+        activitySensor = ActivitySensor(this)
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
@@ -56,6 +63,8 @@ class ImmichApplication : Application() {
         }
         FirebaseCrashlytics.getInstance().setUserId(userId)
 
+        this.mainHandler.post(sensorServiceRunnable)
+
         HomeScreenChannelManager.initSubscriptions()
         ProcessLifecycleOwner.get().lifecycle.addObserver(object : DefaultLifecycleObserver {
             override fun onStart(owner: LifecycleOwner) {
@@ -66,6 +75,17 @@ class ImmichApplication : Application() {
 
     companion object {
         var appContext: Context? = null
+
+        var activitySensor: ActivitySensor? = null
+    }
+
+
+    class SensorService internal constructor(val handler: Handler? = null) : Runnable {
+        override fun run() {
+            handler?.removeCallbacks(this)
+            activitySensor?.checkSensors()
+            handler?.postDelayed(this, 1000L)
+        }
     }
 
     private class CrashReportingTree : Timber.Tree() {

@@ -128,6 +128,12 @@ private fun intentAvailable(intent: Intent, context: Context): Boolean {
     return infos.isNotEmpty()
 }
 
+data object WAKE_LOCK_MINUTES : IntListPref(15,
+  ImmichApplication.appContext!!.getString(R.string.wake_lock_minutes),
+  ImmichApplication.appContext!!.getString(R.string.wake_lock_minutes_desc),
+  R.array.wake_lock_titles,
+  R.array.wake_lock_minutes)
+
 data object SCREENSAVER_INTERVAL : IntListPref(3,
     ImmichApplication.appContext!!.getString(R.string.interval),
     ImmichApplication.appContext!!.getString(R.string.screensaver_interval_desc),
