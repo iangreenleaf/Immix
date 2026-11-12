@@ -20,6 +20,7 @@ import nl.giejay.android.tv.immich.api.ApiClientConfig
 import nl.giejay.android.tv.immich.home.HomeFragmentDirections
 import nl.giejay.android.tv.immich.homescreenchannels.ChannelDeepLinks
 import nl.giejay.android.tv.immich.homescreenchannels.DeepLinkTarget
+import nl.giejay.android.tv.immich.sensors.PowerUtils
 import nl.giejay.android.tv.immich.shared.prefs.MetaDataScreen
 import nl.giejay.android.tv.immich.shared.prefs.PreferenceManager
 import nl.giejay.android.tv.immich.shared.prefs.SCREENSAVER_ANIMATE_ASSET_SLIDE
@@ -94,6 +95,12 @@ class MainActivity : FragmentActivity() {
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         keyEventsModel.postKeyEvent(event)
+
+        if((event?.keyCode == KeyEvent.KEYCODE_POWER || event?.keyCode == KeyEvent.KEYCODE_F1) && event.action == KeyEvent.ACTION_DOWN){
+          Timber.i("Power key pressed")
+          ImmichApplication.activitySensor?.powerButtonPressed()
+        }
+
         return super.onKeyDown(keyCode, event)
     }
 
